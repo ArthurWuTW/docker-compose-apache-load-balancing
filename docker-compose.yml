@@ -1,0 +1,52 @@
+version: '3'
+
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
+          gateway: 172.28.5.254
+
+services:
+
+  apache-server: 
+    build: 
+      context: image/apache-centos
+      args:
+        TIMEZONE: Asia/Taipei
+        CONTAINER_USER: user
+        CONTAINER_HOME: /home/user
+        CONTAINER_NAME: apache-centos
+        HOST_USER_GID: 1000
+        HOST_USER_UID: 1000
+    hostname: apache-server.example.com
+    volumes:
+      - /Users/wuguanlong/Desktop:/home/user/Desktop
+    networks:
+      vpcbr:
+        ipv4_address: 172.28.1.5
+    ports:
+      - "3355:80"
+
+
+  tomee1-server: 
+    build: 
+      context: image/tomee-centos
+      args:
+        TIMEZONE: Asia/Taipei
+        CONTAINER_USER: user
+        CONTAINER_HOME: /home/user
+        CONTAINER_NAME: tomee-centos
+        HOST_USER_GID: 1000
+        HOST_USER_UID: 1000
+    hostname: tomee1-server.example.com
+    volumes:
+      - /Users/wuguanlong/Desktop:/home/user/Desktop
+    networks:
+      vpcbr:
+        ipv4_address: 172.28.1.6
+    ports:
+      - "5566:8080"
+  

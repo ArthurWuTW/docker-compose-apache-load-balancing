@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+source exit_on_error.sh
+
+groupadd --gid ${HOST_USER_GID:?} ${CONTAINER_USER:?} || exit_on_error
+
+useradd \
+    --create-home \
+    --shell /bin/bash \
+    --uid ${HOST_USER_GID:?} \
+    --gid ${CONTAINER_USER:?} \
+    ${CONTAINER_USER:?} \
+    || exit_on_error
+
+yum update -y
+yum install -y sudo || exit_on_error
+#echo "${CONTAINER_USER:?} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers \
+#        || exit_on_error
+
+echo "user:Lion_j6ej04xj/6">user-pwd.txt
+chpasswd <user-pwd.txt
+rm user-pwd.txt
+
+echo "root:Lion_j6ej04xj/6">user-pwd.txt
+chpasswd <user-pwd.txt
+rm user-pwd.txt
