@@ -33,7 +33,7 @@ services:
 
   tomee1-server: 
     build: 
-      context: image/tomee-centos
+      context: image/tomee1-centos
       args:
         TIMEZONE: Asia/Taipei
         CONTAINER_USER: user
@@ -49,4 +49,23 @@ services:
         ipv4_address: 172.28.1.6
     ports:
       - "5566:8080"
+  
+  tomee2-server: 
+    build: 
+      context: image/tomee2-centos
+      args:
+        TIMEZONE: Asia/Taipei
+        CONTAINER_USER: user
+        CONTAINER_HOME: /home/user
+        CONTAINER_NAME: tomee-centos
+        HOST_USER_GID: 1000
+        HOST_USER_UID: 1000
+    hostname: tomee2-server.example.com
+    volumes:
+      - /Users/wuguanlong/Desktop:/home/user/Desktop
+    networks:
+      vpcbr:
+        ipv4_address: 172.28.1.7
+    ports:
+      - "5567:8080"
   

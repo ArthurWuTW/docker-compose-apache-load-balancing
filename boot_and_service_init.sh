@@ -1,7 +1,14 @@
-if [[ ! -e ./image/tomee-centos/apache-tomee-7.1.4-plus.tar.gz ]]; then
-    wget https://dlcdn.apache.org/tomee/tomee-7.1.4/apache-tomee-7.1.4-plus.tar.gz -P ./image/tomee-centos/
+# Tomee 1
+if [[ ! -e ./image/tomee1-centos/apache-tomee-7.1.4-plus.tar.gz ]]; then
+    wget https://dlcdn.apache.org/tomee/tomee-7.1.4/apache-tomee-7.1.4-plus.tar.gz -P ./image/tomee1-centos/
 fi
 
+# Tomee 2
+if [[ ! -e ./image/tomee2-centos/apache-tomee-7.1.4-plus.tar.gz ]]; then
+    wget https://dlcdn.apache.org/tomee/tomee-7.1.4/apache-tomee-7.1.4-plus.tar.gz -P ./image/tomee2-centos/
+fi
+
+# Apache
 if [[ ! -e ./image/apache-centos/apr-1.7.0.tar.gz ]]; then
     wget https://dlcdn.apache.org//apr/apr-1.7.0.tar.gz -P ./image/apache-centos/
 fi

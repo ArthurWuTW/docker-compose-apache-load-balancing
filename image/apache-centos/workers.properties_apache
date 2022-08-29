@@ -2,6 +2,10 @@ worker.tomcat_1.type=ajp13
 worker.tomcat_1.port=8009
 worker.tomcat_1.host=172.28.1.6
 
+worker.tomcat_2.type=ajp13
+worker.tomcat_2.port=8009
+worker.tomcat_2.host=172.28.1.7
+
 worker.list=balancer
 worker.balancer.type=lb
-worker.balancer.balance_workers=tomcat_1
+worker.balancer.balance_workers=tomcat_1,tomcat_2
